@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="jiaowudataModelStoreContainer" CdmEntityContainer="jiaowudataEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="jiaowudataModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="班级表">
+      <EntityTypeMapping TypeName="jiaowudataModel.班级表">
+        <MappingFragment StoreEntitySet="班级表">
+          <ScalarProperty Name="班级名称" ColumnName="班级名称" />
+          <ScalarProperty Name="班主任" ColumnName="班主任" />
+          <ScalarProperty Name="班主任电话" ColumnName="班主任电话" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="学生表">
+      <EntityTypeMapping TypeName="jiaowudataModel.学生表">
+        <MappingFragment StoreEntitySet="学生表">
+          <ScalarProperty Name="学号" ColumnName="学号" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="性别" ColumnName="性别" />
+          <ScalarProperty Name="班级" ColumnName="班级" />
+          <ScalarProperty Name="通信地址" ColumnName="通信地址" />
+          <ScalarProperty Name="出生日期" ColumnName="出生日期" />
+          <ScalarProperty Name="身高" ColumnName="身高" />
+          <ScalarProperty Name="密码" ColumnName="密码" />
+          <ScalarProperty Name="金额" ColumnName="金额" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="学生名单">
+      <EntityTypeMapping TypeName="jiaowudataModel.学生名单">
+        <MappingFragment StoreEntitySet="学生名单">
+          <ScalarProperty Name="身份证号" ColumnName="身份证号" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="性别" ColumnName="性别" />
+          <ScalarProperty Name="民族" ColumnName="民族" />
+          <ScalarProperty Name="年级" ColumnName="年级" />
+          <ScalarProperty Name="入学年月" ColumnName="入学年月" />
+          <ScalarProperty Name="招生类型" ColumnName="招生类型" />
+          <ScalarProperty Name="班级" ColumnName="班级" />
+          <ScalarProperty Name="学制" ColumnName="学制" />
+          <ScalarProperty Name="班级1" ColumnName="班级1" />
+          <ScalarProperty Name="联招合作类型" ColumnName="联招合作类型" />
+          <ScalarProperty Name="联招合作学校机构代码" ColumnName="联招合作学校机构代码" />
+          <ScalarProperty Name="户籍所在省" ColumnName="户籍所在省" />
+          <ScalarProperty Name="户籍所在市" ColumnName="户籍所在市" />
+          <ScalarProperty Name="户籍所在区县" ColumnName="户籍所在区县" />
+          <ScalarProperty Name="详细地址" ColumnName="详细地址" />
+          <ScalarProperty Name="户籍性质" ColumnName="户籍性质" />
+          <ScalarProperty Name="是否低保" ColumnName="是否低保" />
+          <ScalarProperty Name="是否享受国家助学金" ColumnName="是否享受国家助学金" />
+          <ScalarProperty Name="助学金月发放标准_元_" ColumnName="助学金月发放标准（元）" />
+          <ScalarProperty Name="学生类型" ColumnName="学生类型" />
+          <ScalarProperty Name="生源类别" ColumnName="生源类别" />
+          <ScalarProperty Name="家长_监护人_姓名" ColumnName="家长（监护人）姓名" />
+          <ScalarProperty Name="家长_监护人_电话" ColumnName="家长（监护人）电话" />
+          <ScalarProperty Name="学习形式" ColumnName="学习形式" />
+          <ScalarProperty Name="学生类别" ColumnName="学生类别" />
+          <ScalarProperty Name="出生日期" ColumnName="出生日期" />
+          <ScalarProperty Name="校内学号" ColumnName="校内学号" />
+          <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+          <ScalarProperty Name="邮政编码" ColumnName="邮政编码" />
+          <ScalarProperty Name="省级电子注册学籍号" ColumnName="省级电子注册学籍号" />
+          <ScalarProperty Name="曾用名" ColumnName="曾用名" />
+          <ScalarProperty Name="政治面貌" ColumnName="政治面貌" />
+          <ScalarProperty Name="籍贯" ColumnName="籍贯" />
+          <ScalarProperty Name="港澳台侨胞" ColumnName="港澳台侨胞" />
+          <ScalarProperty Name="毕业学校" ColumnName="毕业学校" />
+          <ScalarProperty Name="现家庭住址" ColumnName="现家庭住址" />
+          <ScalarProperty Name="电子邮箱" ColumnName="电子邮箱" />
+          <ScalarProperty Name="银行卡号" ColumnName="银行卡号" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="金额" ColumnName="金额" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

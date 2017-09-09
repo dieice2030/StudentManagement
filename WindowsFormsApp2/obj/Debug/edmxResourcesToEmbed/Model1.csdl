@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="jiaowudataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="班级表">
+    <Key>
+      <PropertyRef Name="班级名称" />
+    </Key>
+    <Property Name="班级名称" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="班主任" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="班主任电话" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="学生表" Relationship="Self.FK_学生表_班级表" FromRole="班级表" ToRole="学生表" />
+  </EntityType>
+  <EntityType Name="学生表">
+    <Key>
+      <PropertyRef Name="学号" />
+    </Key>
+    <Property Name="学号" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="性别" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="班级" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="通信地址" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="出生日期" Type="DateTime" Precision="3" />
+    <Property Name="身高" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="密码" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="金额" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="班级表" Relationship="Self.FK_学生表_班级表" FromRole="学生表" ToRole="班级表" />
+  </EntityType>
+  <EntityType Name="学生名单">
+    <Key>
+      <PropertyRef Name="身份证号" />
+    </Key>
+    <Property Name="身份证号" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="姓名" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="性别" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="民族" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="年级" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="入学年月" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="招生类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="班级" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="学制" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="班级1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="联招合作类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="联招合作学校机构代码" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="户籍所在省" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="户籍所在市" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="户籍所在区县" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="详细地址" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="户籍性质" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="是否低保" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="是否享受国家助学金" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="助学金月发放标准_元_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="学生类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="生源类别" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="家长_监护人_姓名" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="家长_监护人_电话" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="学习形式" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="学生类别" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="出生日期" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="校内学号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="联系电话" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="邮政编码" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="省级电子注册学籍号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="曾用名" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="政治面貌" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="籍贯" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="港澳台侨胞" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="毕业学校" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="现家庭住址" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="电子邮箱" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="银行卡号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="备注" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="金额" Type="Double" />
+  </EntityType>
+  <Association Name="FK_学生表_班级表">
+    <End Role="班级表" Type="Self.班级表" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="学生表" Type="Self.学生表" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="班级表">
+        <PropertyRef Name="班级名称" />
+      </Principal>
+      <Dependent Role="学生表">
+        <PropertyRef Name="班级" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="jiaowudataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="班级表" EntityType="Self.班级表" />
+    <EntitySet Name="学生表" EntityType="Self.学生表" />
+    <EntitySet Name="学生名单" EntityType="Self.学生名单" />
+    <AssociationSet Name="FK_学生表_班级表" Association="Self.FK_学生表_班级表">
+      <End Role="班级表" EntitySet="班级表" />
+      <End Role="学生表" EntitySet="学生表" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

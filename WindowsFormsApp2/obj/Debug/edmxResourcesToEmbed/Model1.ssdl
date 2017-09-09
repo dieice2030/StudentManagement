@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="jiaowudataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="班级表">
+    <Key>
+      <PropertyRef Name="班级名称" />
+    </Key>
+    <Property Name="班级名称" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="班主任" Type="nvarchar" MaxLength="50" />
+    <Property Name="班主任电话" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="学生表">
+    <Key>
+      <PropertyRef Name="学号" />
+    </Key>
+    <Property Name="学号" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="性别" Type="nvarchar" MaxLength="1" />
+    <Property Name="班级" Type="nvarchar" MaxLength="50" />
+    <Property Name="通信地址" Type="nvarchar" MaxLength="200" />
+    <Property Name="出生日期" Type="datetime" />
+    <Property Name="身高" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="密码" Type="nvarchar" MaxLength="50" />
+    <Property Name="金额" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jiaowudata.dbo.学生名单”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="学生名单">
+    <Key>
+      <PropertyRef Name="身份证号" />
+    </Key>
+    <Property Name="身份证号" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="姓名" Type="nvarchar" MaxLength="25" />
+    <Property Name="性别" Type="nvarchar" MaxLength="1" />
+    <Property Name="民族" Type="nvarchar" MaxLength="10" />
+    <Property Name="年级" Type="nvarchar" MaxLength="255" />
+    <Property Name="入学年月" Type="nvarchar" MaxLength="255" />
+    <Property Name="招生类型" Type="nvarchar" MaxLength="255" />
+    <Property Name="班级" Type="nvarchar" MaxLength="255" />
+    <Property Name="学制" Type="nvarchar" MaxLength="255" />
+    <Property Name="班级1" Type="nvarchar" MaxLength="255" />
+    <Property Name="联招合作类型" Type="nvarchar" MaxLength="255" />
+    <Property Name="联招合作学校机构代码" Type="nvarchar" MaxLength="255" />
+    <Property Name="户籍所在省" Type="nvarchar" MaxLength="255" />
+    <Property Name="户籍所在市" Type="nvarchar" MaxLength="255" />
+    <Property Name="户籍所在区县" Type="nvarchar" MaxLength="255" />
+    <Property Name="详细地址" Type="nvarchar" MaxLength="255" />
+    <Property Name="户籍性质" Type="nvarchar" MaxLength="255" />
+    <Property Name="是否低保" Type="nvarchar" MaxLength="255" />
+    <Property Name="是否享受国家助学金" Type="nvarchar" MaxLength="255" />
+    <Property Name="助学金月发放标准（元）" Type="nvarchar" MaxLength="255" />
+    <Property Name="学生类型" Type="nvarchar" MaxLength="255" />
+    <Property Name="生源类别" Type="nvarchar" MaxLength="255" />
+    <Property Name="家长（监护人）姓名" Type="nvarchar" MaxLength="255" />
+    <Property Name="家长（监护人）电话" Type="nvarchar" MaxLength="255" />
+    <Property Name="学习形式" Type="nvarchar" MaxLength="255" />
+    <Property Name="学生类别" Type="nvarchar" MaxLength="255" />
+    <Property Name="出生日期" Type="nvarchar" MaxLength="255" />
+    <Property Name="校内学号" Type="nvarchar" MaxLength="255" />
+    <Property Name="联系电话" Type="nvarchar" MaxLength="255" />
+    <Property Name="邮政编码" Type="nvarchar" MaxLength="255" />
+    <Property Name="省级电子注册学籍号" Type="nvarchar" MaxLength="255" />
+    <Property Name="曾用名" Type="nvarchar" MaxLength="255" />
+    <Property Name="政治面貌" Type="nvarchar" MaxLength="255" />
+    <Property Name="籍贯" Type="nvarchar" MaxLength="255" />
+    <Property Name="港澳台侨胞" Type="nvarchar" MaxLength="255" />
+    <Property Name="毕业学校" Type="nvarchar" MaxLength="255" />
+    <Property Name="现家庭住址" Type="nvarchar" MaxLength="255" />
+    <Property Name="电子邮箱" Type="nvarchar" MaxLength="255" />
+    <Property Name="银行卡号" Type="nvarchar" MaxLength="255" />
+    <Property Name="备注" Type="nvarchar" MaxLength="255" />
+    <Property Name="金额" Type="float" />
+  </EntityType>
+  <Association Name="FK_学生表_班级表">
+    <End Role="班级表" Type="Self.班级表" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="学生表" Type="Self.学生表" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="班级表">
+        <PropertyRef Name="班级名称" />
+      </Principal>
+      <Dependent Role="学生表">
+        <PropertyRef Name="班级" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="jiaowudataModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="班级表" EntityType="Self.班级表" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="学生表" EntityType="Self.学生表" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="学生名单" EntityType="Self.学生名单" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [学生名单].[身份证号] AS [身份证号], 
+    [学生名单].[姓名] AS [姓名], 
+    [学生名单].[性别] AS [性别], 
+    [学生名单].[民族] AS [民族], 
+    [学生名单].[年级] AS [年级], 
+    [学生名单].[入学年月] AS [入学年月], 
+    [学生名单].[招生类型] AS [招生类型], 
+    [学生名单].[班级] AS [班级], 
+    [学生名单].[学制] AS [学制], 
+    [学生名单].[班级1] AS [班级1], 
+    [学生名单].[联招合作类型] AS [联招合作类型], 
+    [学生名单].[联招合作学校机构代码] AS [联招合作学校机构代码], 
+    [学生名单].[户籍所在省] AS [户籍所在省], 
+    [学生名单].[户籍所在市] AS [户籍所在市], 
+    [学生名单].[户籍所在区县] AS [户籍所在区县], 
+    [学生名单].[详细地址] AS [详细地址], 
+    [学生名单].[户籍性质] AS [户籍性质], 
+    [学生名单].[是否低保] AS [是否低保], 
+    [学生名单].[是否享受国家助学金] AS [是否享受国家助学金], 
+    [学生名单].[助学金月发放标准（元）] AS [助学金月发放标准（元）], 
+    [学生名单].[学生类型] AS [学生类型], 
+    [学生名单].[生源类别] AS [生源类别], 
+    [学生名单].[家长（监护人）姓名] AS [家长（监护人）姓名], 
+    [学生名单].[家长（监护人）电话] AS [家长（监护人）电话], 
+    [学生名单].[学习形式] AS [学习形式], 
+    [学生名单].[学生类别] AS [学生类别], 
+    [学生名单].[出生日期] AS [出生日期], 
+    [学生名单].[校内学号] AS [校内学号], 
+    [学生名单].[联系电话] AS [联系电话], 
+    [学生名单].[邮政编码] AS [邮政编码], 
+    [学生名单].[省级电子注册学籍号] AS [省级电子注册学籍号], 
+    [学生名单].[曾用名] AS [曾用名], 
+    [学生名单].[政治面貌] AS [政治面貌], 
+    [学生名单].[籍贯] AS [籍贯], 
+    [学生名单].[港澳台侨胞] AS [港澳台侨胞], 
+    [学生名单].[毕业学校] AS [毕业学校], 
+    [学生名单].[现家庭住址] AS [现家庭住址], 
+    [学生名单].[电子邮箱] AS [电子邮箱], 
+    [学生名单].[银行卡号] AS [银行卡号], 
+    [学生名单].[备注] AS [备注], 
+    [学生名单].[金额] AS [金额]
+    FROM [dbo].[学生名单] AS [学生名单]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_学生表_班级表" Association="Self.FK_学生表_班级表">
+      <End Role="班级表" EntitySet="班级表" />
+      <End Role="学生表" EntitySet="学生表" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

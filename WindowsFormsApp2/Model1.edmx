@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="jiaowudataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="班级表">
+          <Key>
+            <PropertyRef Name="班级名称" />
+          </Key>
+          <Property Name="班级名称" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="班主任" Type="nvarchar" MaxLength="50" />
+          <Property Name="班主任电话" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="学生表">
+          <Key>
+            <PropertyRef Name="学号" />
+          </Key>
+          <Property Name="学号" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="性别" Type="nvarchar" MaxLength="1" />
+          <Property Name="班级" Type="nvarchar" MaxLength="50" />
+          <Property Name="通信地址" Type="nvarchar" MaxLength="200" />
+          <Property Name="出生日期" Type="datetime" />
+          <Property Name="身高" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="密码" Type="nvarchar" MaxLength="50" />
+          <Property Name="金额" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“jiaowudata.dbo.学生名单”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="学生名单">
+          <Key>
+            <PropertyRef Name="身份证号" />
+          </Key>
+          <Property Name="身份证号" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="25" />
+          <Property Name="性别" Type="nvarchar" MaxLength="1" />
+          <Property Name="民族" Type="nvarchar" MaxLength="10" />
+          <Property Name="年级" Type="nvarchar" MaxLength="255" />
+          <Property Name="入学年月" Type="nvarchar" MaxLength="255" />
+          <Property Name="招生类型" Type="nvarchar" MaxLength="255" />
+          <Property Name="班级" Type="nvarchar" MaxLength="255" />
+          <Property Name="学制" Type="nvarchar" MaxLength="255" />
+          <Property Name="班级1" Type="nvarchar" MaxLength="255" />
+          <Property Name="联招合作类型" Type="nvarchar" MaxLength="255" />
+          <Property Name="联招合作学校机构代码" Type="nvarchar" MaxLength="255" />
+          <Property Name="户籍所在省" Type="nvarchar" MaxLength="255" />
+          <Property Name="户籍所在市" Type="nvarchar" MaxLength="255" />
+          <Property Name="户籍所在区县" Type="nvarchar" MaxLength="255" />
+          <Property Name="详细地址" Type="nvarchar" MaxLength="255" />
+          <Property Name="户籍性质" Type="nvarchar" MaxLength="255" />
+          <Property Name="是否低保" Type="nvarchar" MaxLength="255" />
+          <Property Name="是否享受国家助学金" Type="nvarchar" MaxLength="255" />
+          <Property Name="助学金月发放标准（元）" Type="nvarchar" MaxLength="255" />
+          <Property Name="学生类型" Type="nvarchar" MaxLength="255" />
+          <Property Name="生源类别" Type="nvarchar" MaxLength="255" />
+          <Property Name="家长（监护人）姓名" Type="nvarchar" MaxLength="255" />
+          <Property Name="家长（监护人）电话" Type="nvarchar" MaxLength="255" />
+          <Property Name="学习形式" Type="nvarchar" MaxLength="255" />
+          <Property Name="学生类别" Type="nvarchar" MaxLength="255" />
+          <Property Name="出生日期" Type="nvarchar" MaxLength="255" />
+          <Property Name="校内学号" Type="nvarchar" MaxLength="255" />
+          <Property Name="联系电话" Type="nvarchar" MaxLength="255" />
+          <Property Name="邮政编码" Type="nvarchar" MaxLength="255" />
+          <Property Name="省级电子注册学籍号" Type="nvarchar" MaxLength="255" />
+          <Property Name="曾用名" Type="nvarchar" MaxLength="255" />
+          <Property Name="政治面貌" Type="nvarchar" MaxLength="255" />
+          <Property Name="籍贯" Type="nvarchar" MaxLength="255" />
+          <Property Name="港澳台侨胞" Type="nvarchar" MaxLength="255" />
+          <Property Name="毕业学校" Type="nvarchar" MaxLength="255" />
+          <Property Name="现家庭住址" Type="nvarchar" MaxLength="255" />
+          <Property Name="电子邮箱" Type="nvarchar" MaxLength="255" />
+          <Property Name="银行卡号" Type="nvarchar" MaxLength="255" />
+          <Property Name="备注" Type="nvarchar" MaxLength="255" />
+          <Property Name="金额" Type="float" />
+        </EntityType>
+        <Association Name="FK_学生表_班级表">
+          <End Role="班级表" Type="Self.班级表" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="学生表" Type="Self.学生表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="班级表">
+              <PropertyRef Name="班级名称" />
+            </Principal>
+            <Dependent Role="学生表">
+              <PropertyRef Name="班级" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="jiaowudataModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="班级表" EntityType="Self.班级表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="学生表" EntityType="Self.学生表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="学生名单" EntityType="Self.学生名单" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [学生名单].[身份证号] AS [身份证号], 
+    [学生名单].[姓名] AS [姓名], 
+    [学生名单].[性别] AS [性别], 
+    [学生名单].[民族] AS [民族], 
+    [学生名单].[年级] AS [年级], 
+    [学生名单].[入学年月] AS [入学年月], 
+    [学生名单].[招生类型] AS [招生类型], 
+    [学生名单].[班级] AS [班级], 
+    [学生名单].[学制] AS [学制], 
+    [学生名单].[班级1] AS [班级1], 
+    [学生名单].[联招合作类型] AS [联招合作类型], 
+    [学生名单].[联招合作学校机构代码] AS [联招合作学校机构代码], 
+    [学生名单].[户籍所在省] AS [户籍所在省], 
+    [学生名单].[户籍所在市] AS [户籍所在市], 
+    [学生名单].[户籍所在区县] AS [户籍所在区县], 
+    [学生名单].[详细地址] AS [详细地址], 
+    [学生名单].[户籍性质] AS [户籍性质], 
+    [学生名单].[是否低保] AS [是否低保], 
+    [学生名单].[是否享受国家助学金] AS [是否享受国家助学金], 
+    [学生名单].[助学金月发放标准（元）] AS [助学金月发放标准（元）], 
+    [学生名单].[学生类型] AS [学生类型], 
+    [学生名单].[生源类别] AS [生源类别], 
+    [学生名单].[家长（监护人）姓名] AS [家长（监护人）姓名], 
+    [学生名单].[家长（监护人）电话] AS [家长（监护人）电话], 
+    [学生名单].[学习形式] AS [学习形式], 
+    [学生名单].[学生类别] AS [学生类别], 
+    [学生名单].[出生日期] AS [出生日期], 
+    [学生名单].[校内学号] AS [校内学号], 
+    [学生名单].[联系电话] AS [联系电话], 
+    [学生名单].[邮政编码] AS [邮政编码], 
+    [学生名单].[省级电子注册学籍号] AS [省级电子注册学籍号], 
+    [学生名单].[曾用名] AS [曾用名], 
+    [学生名单].[政治面貌] AS [政治面貌], 
+    [学生名单].[籍贯] AS [籍贯], 
+    [学生名单].[港澳台侨胞] AS [港澳台侨胞], 
+    [学生名单].[毕业学校] AS [毕业学校], 
+    [学生名单].[现家庭住址] AS [现家庭住址], 
+    [学生名单].[电子邮箱] AS [电子邮箱], 
+    [学生名单].[银行卡号] AS [银行卡号], 
+    [学生名单].[备注] AS [备注], 
+    [学生名单].[金额] AS [金额]
+    FROM [dbo].[学生名单] AS [学生名单]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_学生表_班级表" Association="Self.FK_学生表_班级表">
+            <End Role="班级表" EntitySet="班级表" />
+            <End Role="学生表" EntitySet="学生表" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="jiaowudataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="班级表">
+          <Key>
+            <PropertyRef Name="班级名称" />
+          </Key>
+          <Property Name="班级名称" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="班主任" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="班主任电话" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="学生表" Relationship="Self.FK_学生表_班级表" FromRole="班级表" ToRole="学生表" />
+        </EntityType>
+        <EntityType Name="学生表">
+          <Key>
+            <PropertyRef Name="学号" />
+          </Key>
+          <Property Name="学号" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="性别" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="班级" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="通信地址" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="出生日期" Type="DateTime" Precision="3" />
+          <Property Name="身高" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="密码" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="金额" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="班级表" Relationship="Self.FK_学生表_班级表" FromRole="学生表" ToRole="班级表" />
+        </EntityType>
+        <EntityType Name="学生名单">
+          <Key>
+            <PropertyRef Name="身份证号" />
+          </Key>
+          <Property Name="身份证号" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="姓名" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="性别" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="民族" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="年级" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="入学年月" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="招生类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="班级" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="学制" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="班级1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="联招合作类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="联招合作学校机构代码" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="户籍所在省" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="户籍所在市" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="户籍所在区县" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="详细地址" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="户籍性质" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="是否低保" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="是否享受国家助学金" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="助学金月发放标准_元_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="学生类型" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="生源类别" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="家长_监护人_姓名" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="家长_监护人_电话" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="学习形式" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="学生类别" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="出生日期" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="校内学号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="联系电话" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="邮政编码" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="省级电子注册学籍号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="曾用名" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="政治面貌" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="籍贯" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="港澳台侨胞" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="毕业学校" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="现家庭住址" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="电子邮箱" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="银行卡号" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="备注" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="金额" Type="Double" />
+        </EntityType>
+        <Association Name="FK_学生表_班级表">
+          <End Role="班级表" Type="Self.班级表" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="学生表" Type="Self.学生表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="班级表">
+              <PropertyRef Name="班级名称" />
+            </Principal>
+            <Dependent Role="学生表">
+              <PropertyRef Name="班级" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="jiaowudataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="班级表" EntityType="Self.班级表" />
+          <EntitySet Name="学生表" EntityType="Self.学生表" />
+          <EntitySet Name="学生名单" EntityType="Self.学生名单" />
+          <AssociationSet Name="FK_学生表_班级表" Association="Self.FK_学生表_班级表">
+            <End Role="班级表" EntitySet="班级表" />
+            <End Role="学生表" EntitySet="学生表" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="jiaowudataModelStoreContainer" CdmEntityContainer="jiaowudataEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="jiaowudataModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="班级表">
+            <EntityTypeMapping TypeName="jiaowudataModel.班级表">
+              <MappingFragment StoreEntitySet="班级表">
+                <ScalarProperty Name="班级名称" ColumnName="班级名称" />
+                <ScalarProperty Name="班主任" ColumnName="班主任" />
+                <ScalarProperty Name="班主任电话" ColumnName="班主任电话" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="学生表">
+            <EntityTypeMapping TypeName="jiaowudataModel.学生表">
+              <MappingFragment StoreEntitySet="学生表">
+                <ScalarProperty Name="学号" ColumnName="学号" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="性别" ColumnName="性别" />
+                <ScalarProperty Name="班级" ColumnName="班级" />
+                <ScalarProperty Name="通信地址" ColumnName="通信地址" />
+                <ScalarProperty Name="出生日期" ColumnName="出生日期" />
+                <ScalarProperty Name="身高" ColumnName="身高" />
+                <ScalarProperty Name="密码" ColumnName="密码" />
+                <ScalarProperty Name="金额" ColumnName="金额" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="学生名单">
+            <EntityTypeMapping TypeName="jiaowudataModel.学生名单">
+              <MappingFragment StoreEntitySet="学生名单">
+                <ScalarProperty Name="身份证号" ColumnName="身份证号" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="性别" ColumnName="性别" />
+                <ScalarProperty Name="民族" ColumnName="民族" />
+                <ScalarProperty Name="年级" ColumnName="年级" />
+                <ScalarProperty Name="入学年月" ColumnName="入学年月" />
+                <ScalarProperty Name="招生类型" ColumnName="招生类型" />
+                <ScalarProperty Name="班级" ColumnName="班级" />
+                <ScalarProperty Name="学制" ColumnName="学制" />
+                <ScalarProperty Name="班级1" ColumnName="班级1" />
+                <ScalarProperty Name="联招合作类型" ColumnName="联招合作类型" />
+                <ScalarProperty Name="联招合作学校机构代码" ColumnName="联招合作学校机构代码" />
+                <ScalarProperty Name="户籍所在省" ColumnName="户籍所在省" />
+                <ScalarProperty Name="户籍所在市" ColumnName="户籍所在市" />
+                <ScalarProperty Name="户籍所在区县" ColumnName="户籍所在区县" />
+                <ScalarProperty Name="详细地址" ColumnName="详细地址" />
+                <ScalarProperty Name="户籍性质" ColumnName="户籍性质" />
+                <ScalarProperty Name="是否低保" ColumnName="是否低保" />
+                <ScalarProperty Name="是否享受国家助学金" ColumnName="是否享受国家助学金" />
+                <ScalarProperty Name="助学金月发放标准_元_" ColumnName="助学金月发放标准（元）" />
+                <ScalarProperty Name="学生类型" ColumnName="学生类型" />
+                <ScalarProperty Name="生源类别" ColumnName="生源类别" />
+                <ScalarProperty Name="家长_监护人_姓名" ColumnName="家长（监护人）姓名" />
+                <ScalarProperty Name="家长_监护人_电话" ColumnName="家长（监护人）电话" />
+                <ScalarProperty Name="学习形式" ColumnName="学习形式" />
+                <ScalarProperty Name="学生类别" ColumnName="学生类别" />
+                <ScalarProperty Name="出生日期" ColumnName="出生日期" />
+                <ScalarProperty Name="校内学号" ColumnName="校内学号" />
+                <ScalarProperty Name="联系电话" ColumnName="联系电话" />
+                <ScalarProperty Name="邮政编码" ColumnName="邮政编码" />
+                <ScalarProperty Name="省级电子注册学籍号" ColumnName="省级电子注册学籍号" />
+                <ScalarProperty Name="曾用名" ColumnName="曾用名" />
+                <ScalarProperty Name="政治面貌" ColumnName="政治面貌" />
+                <ScalarProperty Name="籍贯" ColumnName="籍贯" />
+                <ScalarProperty Name="港澳台侨胞" ColumnName="港澳台侨胞" />
+                <ScalarProperty Name="毕业学校" ColumnName="毕业学校" />
+                <ScalarProperty Name="现家庭住址" ColumnName="现家庭住址" />
+                <ScalarProperty Name="电子邮箱" ColumnName="电子邮箱" />
+                <ScalarProperty Name="银行卡号" ColumnName="银行卡号" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="金额" ColumnName="金额" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
